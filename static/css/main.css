@@ -1,0 +1,15 @@
+.box {
+    border: 5px outset red;
+    background-color: lightblue;    
+    text-align: center;
+}
+
+.world-map{
+    width: 400px;
+    height: 400px;
+}
+
+.info{
+    width: 400px;
+    height: 700px;
+}
