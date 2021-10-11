@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home Page</title>
+{% endblock %}
+
+{% block body %}
+    <h1>This is a Landing Page for Quaker Oats</h1>
+
+    <a href="{{ url_for('main_vis') }}">Get Started</a>
+{% endblock %}
