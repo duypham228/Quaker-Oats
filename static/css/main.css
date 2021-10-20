@@ -1,22 +1,7 @@
-.wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
-  }
+
 
 .box {
     border: 5px outset red;
     background-color: lightblue;    
     text-align: center;
-}
-
-.world-map{
-    width: 400px;
-    height: 400px;
-}
-
-.info{
-    width: 400px;
-    height: 700px;
 }
