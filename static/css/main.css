@@ -1,7 +1,26 @@
 
-
 .box {
-    border: 5px outset red;
-    background-color: lightblue;    
+    border: 1px outset black;
+    /* background-color: lightblue;     */
     text-align: center;
+}
+
+.brief-info {
+    height: 15vh;
+}
+
+.learn-link {
+    height: 10vh;
+}
+
+.querry {
+    height: 55vh;
+}
+
+.world-map {
+    height: 80vh;
+}
+
+.timeline {
+    height: 17vh;
 }
