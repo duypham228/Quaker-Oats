@@ -5,16 +5,24 @@
 {% endblock %}
 
 {% block body %}
-    <h1>This is the Main Page for our project</h1>
+    <!-- <h1>This is the Main Page for our project</h1> -->
 
-    <div class="wrapper">
-        <div class="world-map box">
-            <h1>World Map</h1>
-        </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="info col-md-3">
+            
+                    <div class="brief-info box">Brief Information</div>
+                    <div class="learn-link box">Learn about</div>
+                    <div class="querry box">Querry</div>
+        
+            </div>
+            
+            <div class="world-map box col-md-9">
+                <div id="chartdiv"></div>    
+            </div>
 
-        <div class="info box">
-            <h1>Information</h1>
         </div>
+        <div class="row box timeline">Time Line</div>
     </div>
 
 
