@@ -1,8 +1,22 @@
 
 .box {
     border: 1px outset black;
-    /* background-color: lightblue;     */
+    padding: 10px 10px 10px 10px;
+    background-color: #002b36;    
     text-align: center;
+}
+
+.no-gutter{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.h1 {
+    color: white;
+}
+
+body {
+    color: white;
 }
 
 .brief-info {
@@ -12,6 +26,7 @@
 .learn-link {
     height: 10vh;
 }
+
 
 .querry {
     height: 55vh;

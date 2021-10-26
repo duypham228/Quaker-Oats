@@ -5,7 +5,7 @@ app = Flask(__name__, static_url_path='/static')
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://postgres:369491Nghia@localhost:5432/quaker_oats'
+app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://duy:2281998duy@localhost:5432/quaker_oats'
 db = SQLAlchemy(app)
 
 
@@ -20,7 +20,7 @@ def main_vis():
 
 @app.route('/get_map_data')
 def get_map_data():
-    return "hello"
+    return "Hello"    
 
 
 if __name__ == "__main__":
