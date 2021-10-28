@@ -11,7 +11,9 @@ function draw_circles(menu) {
         var chart = am4core.create("chartdiv", am4maps.MapChart);
 
         var title = chart.titles.create();
-        title.text = "[bold font-size: 20]Worldwide Earthquake Visualization [" + menu + "]";
+        var title_text = "[bold font-size: 20]Worldwide Earthquake Visualization";
+        title.text = title_text.concat(' - ', menu);
+
         title.textAlign = "middle";
 
 //var mapData = [{'id': 0, 'name': 'PAKISTAN: BALOCHISTAN PROVINCE', 'value': 5.9, 'latitude':30.22, 'longitude': 68.014}];
@@ -27,7 +29,7 @@ var mapData = [
 
 */
 
-        $.getJSON("/static/json/earthquake_data_small.json", function(json) {
+        $.getJSON("/static/json/earthquake_data_small.json", function (json) {
 
             var mapData = json;
 
@@ -61,7 +63,18 @@ var mapData = [
 
             var circle = imageTemplate.createChild(am4core.Circle);
             circle.fillOpacity = 0.7;
-            circle.propertyFields.fill = am4core.color("red");
+
+            if (menu === "Magnitude") {
+                circle.fillOpacity = 0.8;
+                circle.fill = 'yellow';
+            } else if (menu === "Death") {
+                circle.fill = 'red';
+            } else if (menu === "Damage") {
+                circle.fill = 'blue';
+            }
+
+
+            //circle.propertyFields.fill = am4core.color("blue");
             circle.tooltipText = "{Location Name}: [bold]{value}[/]";
 
 
