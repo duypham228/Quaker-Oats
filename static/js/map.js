@@ -11,7 +11,7 @@ function draw_circles(menu) {
         var chart = am4core.create("chartdiv", am4maps.MapChart);
 
         var title = chart.titles.create();
-        var title_text = "[bold font-size: 20]Worldwide Earthquake Visualization";
+        var title_text = "[bold font-size: 20 fill: white;]Worldwide Earthquake Visualization";
         title.text = title_text.concat(' - ', menu);
 
         title.textAlign = "middle";
