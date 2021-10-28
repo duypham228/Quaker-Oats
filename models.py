@@ -88,8 +88,47 @@ class Earthquake(db.Model):
         self.Total_Houses_Damaged_Description = Total_Houses_Damaged_Description
 
     def __repr__(self):
-        # return 'ID {}'.format(self.ID)
-        return self
+        return [
+            self.ID , 
+            self.Epoch , 
+            self.Time , 
+            self.Year , 
+            self.Mo ,
+            self.Dy , 
+            self.Hr , 
+            self.Mn , 
+            self.Sec , 
+            self.Tsu , 
+            self.Vol , 
+            self.Location_Name , 
+            self.Latitude , 
+            self.Longtitude , 
+            self.Focal_Depth_km , 
+            self.Mag , 
+            self.MMI_Int , 
+            self.Deaths , 
+            self.Deaths_Description , 
+            self.Missing , 
+            self.Missing_Description , 
+            self.Injuries , 
+            self.Injuries_Description , 
+            self.Damage_MilDollar , 
+            self.Damage_Description , 
+            self.Houses_Damaged , 
+            self.Houses_Damaged_Description , 
+            self.Total_Deaths , 
+            self.Total_Death_Description , 
+            self.Total_Missing , 
+            self.Total_Missing_Description , 
+            self.Total_Injuries , 
+            self.Total_Injuries_Description , 
+            self.Total_Damage_MilDollar ,
+            self.Total_Damage_Description , 
+            self.Total_Houses_Destroyed ,
+            self.Total_Houses_Destroyed_Description ,
+            self.Total_Houses_Damaged,
+            self.Total_Houses_Damaged_Description
+        ]
 
     
     def serialize(self):

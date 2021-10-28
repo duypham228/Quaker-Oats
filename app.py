@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
-
+import pprint as pp
 
 # from models import Earthquake
 import models
@@ -35,16 +35,23 @@ def get_map_data():
     stmt = select(models.Earthquake) #.where(models.Earthquake.Vol != -1000)
     session = Session(engine)
     # result = session.execute(stmt).all()
-    result = session.query(models.Earthquake).all()
-    # result = session.execute(text("select * from earthquakes limit 10;"))
+    result = session.query(models.Earthquake).where(models.Earthquake.Vol > 1).all()
+    print(type(result), '-----------------------------------')
+    # print(result)
+    #  result = session.execute(text("select * from earthquakes limit 10;"))
     # print(type(stmt), '----------------------------')
     # print(type(result[0]), '----------------------------------')
     
-    # for row in result:
-        # print(row.__dict__)
-    
-    # return str(result)
-    return str(result[0].__dict__)
+    output = '['
+    for row in result:
+        temp = row.__dict__
+        temp.pop('_sa_instance_state')
+        output += pp.pformat(temp)
+        output += ','
+    output = output[:-1]
+    output += ']'
+    # return str(result[0].__dict__)
+    return output
 
 
 if __name__ == "__main__":
