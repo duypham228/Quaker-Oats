@@ -18,6 +18,10 @@ def home():
 def main_vis():
     return render_template('main_vis.html')
 
+@app.route('/general_info', methods=['GET'])
+def general_info():
+    return render_template('general_info.html')
+
 @app.route('/get_map_data')
 def get_map_data():
     return "Hello"    

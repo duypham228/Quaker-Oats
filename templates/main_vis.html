@@ -2,19 +2,24 @@
 
 {% block head %}
 <title>Home Page</title>
+<style>
+body {
+    color: white;
+}
+</style>
 {% endblock %}
 
 {% block body %}
     <!-- <h1>This is the Main Page for our project</h1> -->
 
     <div class="container-fluid">
-        <div class="row g-0">
-            <div class="info g-0 col-md-3">
+        <div class="row">
+            <div class="info col-md-3">
             
-                    <div class="brief-info g-0 box">Brief Information</div>
+                    <div class="brief-info box">Brief Information</div>
                     <div class="learn-link box">
                         <p>Learn about</p>
-                        <button type="button" class="btn btn-primary btn-lg">Learn about Earthquakes</button>
+                        <a href="{{ url_for('general_info') }}"><button type="button" class="btn btn-primary btn">Learn about Earthquakes</button></a>
                     </div>
                     <div class="querry box">
                         <p>Querry Information Search</p>
@@ -49,7 +54,7 @@
             </div>
 
         </div>
-        <div class="row g-0 box timeline">Time Line</div>
+        <div class="row box timeline">Time Line</div>
     </div>
 
 
