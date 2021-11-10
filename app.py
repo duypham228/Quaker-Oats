@@ -64,7 +64,7 @@ class Earthquake(db.Model):
     Total_Houses_Damaged = db.Column(db.Integer())
     Total_Houses_Damaged_Description = db.Column(db.Integer())
 
-    def __init__(self, ID ,Epoch ,Time ,Year ,Mo ,Dy, Hr ,Mn ,Sec,Tsu,Vol,Location_Name,Latitude,Longtitude,Focal_Depth_km,Mag,MMI_Int,Deaths,Deaths_Description ,Missing ,Missing_Description ,Injuries ,Injuries_Description ,Damage_MilDollar ,Damage_Description ,Houses_Damaged ,Houses_Damaged_Description ,Total_Deaths ,Total_Death_Description ,Total_Missing ,Total_Missing_Description ,Total_Injuries ,Total_Injuries_Description ,Total_Damage_MilDollar ,Total_Damage_Description ,Total_Houses_Destroyed ,Total_Houses_Destroyed_Description ,Total_Houses_Damaged,Total_Houses_Damaged_Description):
+    def __init__(self, ID ,Epoch ,Time ,Year ,Mo ,Dy, Hr ,Mn ,Sec,Tsu,Vol,Location_Name,Latitude,Longtitude,Focal_Depth_km,Mag,MMI_Int,Deaths,Deaths_Description ,Missing ,Missing_Description ,Injuries ,Injuries_Description ,Damage_MilDollar ,Damage_Description, Houses_Destroyed, Houses_Destroyed_Description ,Houses_Damaged ,Houses_Damaged_Description ,Total_Deaths ,Total_Death_Description ,Total_Missing ,Total_Missing_Description ,Total_Injuries ,Total_Injuries_Description ,Total_Damage_MilDollar ,Total_Damage_Description ,Total_Houses_Destroyed ,Total_Houses_Destroyed_Description ,Total_Houses_Damaged,Total_Houses_Damaged_Description):
         self.ID = ID
         self.Epoch = Epoch
         self.Time = Time
@@ -90,6 +90,8 @@ class Earthquake(db.Model):
         self.Injuries_Description = Injuries_Description
         self.Damage_MilDollar = Damage_MilDollar
         self.Damage_Description = Damage_Description
+        self.Houses_Destroyed = Houses_Destroyed
+        self.Houses_Destroyed_Description = Houses_Destroyed_Description
         self.Houses_Damaged = Houses_Damaged
         self.Houses_Damaged_Description = Houses_Damaged_Description
         self.Total_Deaths = Total_Deaths
@@ -132,6 +134,8 @@ class Earthquake(db.Model):
             self.Injuries_Description , 
             self.Damage_MilDollar , 
             self.Damage_Description , 
+            self.Houses_Destroyed,
+            self.Houses_Destroyed_Description,
             self.Houses_Damaged , 
             self.Houses_Damaged_Description , 
             self.Total_Deaths , 
@@ -176,6 +180,8 @@ class Earthquake(db.Model):
             'Injuries_Description' : self.Injuries_Description,
             'Damage_MilDollar' : self.Damage_MilDollar,
             'Damage_Description' : self.Damage_Description,
+            'Houses_Destroyed' : self.Houses_Destroyed,
+            'Houses_Destroyed_Description' : self.Houses_Destroyed_Description,
             'Houses_Damaged' : self.Houses_Damaged,
             'Houses_Damaged_Description' : self.Houses_Damaged_Description,
             'Total_Deaths' : self.Total_Deaths,
@@ -207,21 +213,36 @@ def get_map_data():
     
     start_year = request.args.get('start_year', default = 1800, type = int)
     end_year = request.args.get('end_year', default = 2021, type = int)
+    print(start_year, end_year, type(start_year))
     min_magnitude = request.args.get('min_magnitude', default = -1000, type = float)
     max_magnitude = request.args.get('max_magnitude', default = 10, type = float)
-    tsunami = request.args.get('tsunami', default = False, type = bool)
-    volcano = request.args.get('volcano', default = False, type = bool)
+    tsunami_temp = request.args.get('tsunami', default = False, type = bool)
+    tsunami = -1000
+    if tsunami_temp:
+        tsunami = 0
+    volcano_temp = request.args.get('volcano', default = False, type = bool)
+    volcano = -1000
+    if volcano_temp:
+        volcano = 0
     location = request.args.get('location', default = '', type = str)
 
 
-    result = session.query(Earthquake).where(Earthquake.Year >= start_year and Earthquake.Year <= end_year).all()
+    result = session.query(Earthquake)\
+            .where(Earthquake.Year >= start_year)\
+            .where(Earthquake.Year <= end_year)\
+            .where(Earthquake.Mag >= min_magnitude)\
+            .where(Earthquake.Mag <= max_magnitude)\
+            .where(Earthquake.Tsu >= tsunami)\
+            .where(Earthquake.Vol >= volcano)\
+            .all()
     output = '['
     for row in result:
         temp = row.__dict__
         temp.pop('_sa_instance_state')
         output += pp.pformat(temp)
         output += ','
-    output = output[:-1]
+    if len(result) > 0:
+        output = output[:-1]
     output += ']'
     return output
 

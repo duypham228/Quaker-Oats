@@ -9,10 +9,7 @@ read_tsv = csv.reader(tsv_file, delimiter="\t")
 count = 0
 for row in read_tsv:
     if count > 0:
-        if row[0]=='548':
-            print(row, '----------------------------------')
-            break
-        for i in range (4,39):
+        for i in range (4,len(row)):
             if row[i]=='':
                 row[i]='-1000'
         
@@ -23,7 +20,8 @@ for row in read_tsv:
                                 row[20], row[21], row[22], row[23], row[24],
                                 row[25], row[26], row[27], row[28], row[29],
                                 row[30], row[31], row[32], row[33], row[34], 
-                                row[35], row[36], row[37], row[38]
+                                row[35], row[36], row[37], row[38], row[39],
+                                row[40]
         )
         db.session.add(new_data)
         db.session.commit()
