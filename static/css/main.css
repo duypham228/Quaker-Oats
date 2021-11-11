@@ -1,9 +1,12 @@
 
 .box {
     border: 1px outset black;
-    /* background-color: lightblue;     */
+    padding: 10px 10px 10px 10px;
+    background-color: #002b36;    
     text-align: center;
 }
+
+
 
 .brief-info {
     height: 15vh;
@@ -12,6 +15,7 @@
 .learn-link {
     height: 10vh;
 }
+
 
 .querry {
     height: 55vh;

@@ -14,7 +14,7 @@ app = Flask(__name__, static_url_path='/static')
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://postgres:369491Nghia@localhost:5432/quaker_oats'
+app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://duy:2281998duy@localhost:5432/quaker_oats'
 db = SQLAlchemy(app)
 
 engine = create_engine('postgresql://postgres:369491Nghia@localhost:5432/quaker_oats')
@@ -207,6 +207,10 @@ def home():
 def main_vis():
     return render_template('main_vis.html')
 
+@app.route('/general_info', methods=['GET'])
+def general_info():
+    return render_template('general_info.html')
+
 @app.route('/get_map_data')
 def get_map_data():
     session = Session(engine)
@@ -245,7 +249,6 @@ def get_map_data():
         output = output[:-1]
     output += ']'
     return output
-
 
 if __name__ == "__main__":
     app.run(debug=True)

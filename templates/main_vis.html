@@ -2,6 +2,11 @@
 
 {% block head %}
 <title>Home Page</title>
+<style>
+body {
+    color: white;
+}
+</style>
 {% endblock %}
 
 {% block body %}
@@ -12,12 +17,39 @@
             <div class="info col-md-3">
             
                     <div class="brief-info box">Brief Information</div>
-                    <div class="learn-link box">Learn about</div>
-                    <div class="querry box">Querry</div>
+                    <div class="learn-link box">
+                        <p>Learn about</p>
+                        <a href="{{ url_for('general_info') }}"><button type="button" class="btn btn-primary btn">Learn about Earthquakes</button></a>
+                    </div>
+                    <div class="querry box">
+                        <p>Querry Information Search</p>
+                        <form>
+                            <div class="form-group">
+                                <label for="location">Desired Location:</label>
+                                <input type="text" class="form-control" placeholder="Enter Desired Location">
+                            </div>
+                            <div class="form-group">
+                                <label for="timeframe">Range Slider for Timeframe</label>
+                                <input type="range" class="form-control">
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input">
+                                <label class="form-check-label">Tsunami Involved</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input">
+                                <label class="form-check-label">Volnano Involved</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
         
             </div>
             
             <div class="world-map box col-md-9">
+                <button type="button" class="btn btn-primary" onclick="draw_circles(this.innerHTML)">Magnitude</button>
+                <button type="button" class="btn btn-primary" onclick="draw_circles(this.innerHTML)">Death</button>
+                <button type="button" class="btn btn-primary" onclick="draw_circles(this.innerHTML)">Damage</button>
                 <div id="chartdiv"></div>    
             </div>
 

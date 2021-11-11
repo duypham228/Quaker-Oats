@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://html5-templates.com/" />
+<title>General Information </title>
+<meta name="description" content="General information about earthquakes">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+<script src="script.js"></script>
+{% endblock %}
+
+{% block body %}
+<header>
+		<div id="logo">Learn More About Earthquakes</div>
+		<nav>
+			<ul>
+				<li><a href="{{ url_for('home') }}">World Map</a>
+
+			</ul>
+		</nav>
+	</header>
+	<section>
+		<strong>Earthquakes are a geological phenomenon caused by the shifting of Earth's crust. Find more information about Earthquakes on this page.</strong>
+	</section>
+	<section id="pageContent">
+		<main role="main">
+			<article>
+				<h2>What are Earthquakes and why do they occur?</h2>
+				<p>Rapid shaking of the earth is considered to be an earthquake. To understand why earthquakes occur, we need to understand what the Earth’s crust is made up.</p><br>
+
+				<p>The  Earth’s crust is made up of tectonic plates as can be seen in the image. These plates move, and at their boundaries, they cause an earthquake.</p>
+				<br>
+				<br>
+				<iframe width="700" height="520" src="https://www.youtube.com/embed/_r_nFT2m-Vg">
+				</iframe>
+			</article>
+			<article>
+				<h2>Movement of Tectonic Plates</h2>
+				<p> This video explains what the tectonic plates are and how they move, causing various geological changes.</p><br>
+				<iframe width="700" height="520"
+src="https://www.youtube.com/embed/RA2-Vc4PIOY">
+</iframe>
+			</article>
+			<article>
+				<h2>Want to learn more?</h2>
+				<p>Here are some more resources for you to learn more about earthquakes and related natural disasters</p>
+				<br>
+
+			</article>
+
+		</main>
+		<aside>
+			<div><h3>Effects of Earthquakes</h3>
+				<p> Earthquakes can result in ground shaking, ground rupture, landslides, tsunamis, and fires.</p><br>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/TBCD8PVL0Io" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+			<div><h3>What are Tsunamis?</h3>
+				<p> Tsunamis are giant waves caused by earthquakes or volcanic activities in the ocean. Let's learn more about them!</p><br>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/Wx9vPv-T51I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+			<div><h3>What are Volcanoes?</h3>
+				<p> It is possible for earthquakes to trigger nearby volcanoes causing eruptions. Let's learn more about Volcanoes! </p><br>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/VNGUdObDoLk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+		</aside>
+	</section>
+	<footer>
+		<p>Made using a template from <a href="https://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a></p>
+
+	</footer>
+
+{% endblock %}
