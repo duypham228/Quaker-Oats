@@ -23,10 +23,14 @@ body {
                     </div>
                     <div class="querry box">
                         <p>Querry Information Search</p>
-                        <form>
+                        <form action="/get_map_data">
                             <div class="form-group">
                                 <label for="location">Desired Location:</label>
                                 <input type="text" class="form-control" placeholder="Enter Desired Location">
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Start Year:</label>
+                                <input type="text" name='start_year' class="form-control" placeholder="1800">
                             </div>
                             <div class="form-group">
                                 <label for="timeframe">Range Slider for Timeframe</label>

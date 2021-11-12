@@ -75,7 +75,7 @@ var mapData = [
 
 
             //circle.propertyFields.fill = am4core.color("blue");
-            circle.tooltipText = "{Location Name}: [bold]{value}[/]";
+            circle.tooltipText = "{Location_Name}: [bold]{value}[/]";
 
 
             imageSeries.heatRules.push({
@@ -87,11 +87,11 @@ var mapData = [
             })
 
             imageTemplate.adapter.add("latitude", function (Latitude, target) {
-                return parseFloat(target.dataItem.dataContext.Latitude);
+                return target.dataItem.dataContext.Latitude;
             })
 
             imageTemplate.adapter.add("longitude", function (Longitude, target) {
-                return parseFloat(target.dataItem.dataContext.Longitude);
+                return target.dataItem.dataContext.Longtitude;
             })
         });
 

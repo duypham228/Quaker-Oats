@@ -2,13 +2,14 @@ from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
 import pprint as pp
-
+import json
 # from models import Earthquake
 
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 from sqlalchemy import text
 from flask import request
+from werkzeug.utils import redirect
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -239,16 +240,15 @@ def get_map_data():
             .where(Earthquake.Tsu >= tsunami)\
             .where(Earthquake.Vol >= volcano)\
             .all()
-    output = '['
+    output = []
     for row in result:
         temp = row.__dict__
         temp.pop('_sa_instance_state')
-        output += pp.pformat(temp)
-        output += ','
-    if len(result) > 0:
-        output = output[:-1]
-    output += ']'
-    return output
+        print(type(temp))
+        output.append(temp)
+    with open('static/json/earthquake_data_small.json', 'w') as f:
+        json.dump(output, f)
+    return redirect(url_for('main_vis'))
 
 if __name__ == "__main__":
     app.run(debug=True)
