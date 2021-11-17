@@ -62,6 +62,9 @@ var mapData = [
             imageTemplate.nonScaling = true
 
             var circle = imageTemplate.createChild(am4core.Circle);
+            // circle.events.on("hit", function(event){
+                
+            // });
             circle.fillOpacity = 0.7;
 
             if (menu === "Magnitude") {

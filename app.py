@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, static_url_path='/static')
@@ -14,9 +14,15 @@ db = SQLAlchemy(app)
 def home():
     return render_template('home.html')
 
-@app.route('/main_vis', methods=['GET'])
+@app.route('/main_vis', methods=['GET', 'POST'])
 def main_vis():
-    return render_template('main_vis.html')
+    if request.method == 'POST':
+      startYear = request.form['startYear']
+      endYear = request.form['endYear']
+      print(startYear, endYear)
+      return redirect(url_for("main_vis"))
+    else:
+        return render_template('main_vis.html')
 
 @app.route('/general_info', methods=['GET'])
 def general_info():
