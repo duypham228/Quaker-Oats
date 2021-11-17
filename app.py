@@ -246,6 +246,14 @@ def get_map_data():
     output += ']'
     return output
 
+quakes = Earthquake.Mag
+magnitudes = []
+for qk in quakes['Earthquake']:
+   magnitudes.append(qk['Mag'])
+
+magnitudes.sort(key = float )
+print(magnitudes)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
