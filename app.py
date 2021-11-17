@@ -15,7 +15,7 @@ app = Flask(__name__, static_url_path='/static')
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://duy:2281998duy@localhost:5432/quaker_oats'
+app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://postgres:369491Nghia@localhost:5432/quaker_oats'
 db = SQLAlchemy(app)
 
 engine = create_engine('postgresql://postgres:369491Nghia@localhost:5432/quaker_oats')
@@ -38,7 +38,7 @@ class Earthquake(db.Model):
     Vol = db.Column(db.Integer())
     Location_Name = db.Column(db.String())
     Latitude = db.Column(db.Float())
-    Longtitude = db.Column(db.Float())
+    Longitude = db.Column(db.Float())
     Focal_Depth_km = db.Column(db.Float())
     Mag = db.Column(db.Float())
     MMI_Int = db.Column(db.Float())
@@ -65,7 +65,7 @@ class Earthquake(db.Model):
     Total_Houses_Damaged = db.Column(db.Integer())
     Total_Houses_Damaged_Description = db.Column(db.Integer())
 
-    def __init__(self, ID ,Epoch ,Time ,Year ,Mo ,Dy, Hr ,Mn ,Sec,Tsu,Vol,Location_Name,Latitude,Longtitude,Focal_Depth_km,Mag,MMI_Int,Deaths,Deaths_Description ,Missing ,Missing_Description ,Injuries ,Injuries_Description ,Damage_MilDollar ,Damage_Description, Houses_Destroyed, Houses_Destroyed_Description ,Houses_Damaged ,Houses_Damaged_Description ,Total_Deaths ,Total_Death_Description ,Total_Missing ,Total_Missing_Description ,Total_Injuries ,Total_Injuries_Description ,Total_Damage_MilDollar ,Total_Damage_Description ,Total_Houses_Destroyed ,Total_Houses_Destroyed_Description ,Total_Houses_Damaged,Total_Houses_Damaged_Description):
+    def __init__(self, ID ,Epoch ,Time ,Year ,Mo ,Dy, Hr ,Mn ,Sec,Tsu,Vol,Location_Name,Latitude,Longitude,Focal_Depth_km,Mag,MMI_Int,Deaths,Deaths_Description ,Missing ,Missing_Description ,Injuries ,Injuries_Description ,Damage_MilDollar ,Damage_Description, Houses_Destroyed, Houses_Destroyed_Description ,Houses_Damaged ,Houses_Damaged_Description ,Total_Deaths ,Total_Death_Description ,Total_Missing ,Total_Missing_Description ,Total_Injuries ,Total_Injuries_Description ,Total_Damage_MilDollar ,Total_Damage_Description ,Total_Houses_Destroyed ,Total_Houses_Destroyed_Description ,Total_Houses_Damaged,Total_Houses_Damaged_Description):
         self.ID = ID
         self.Epoch = Epoch
         self.Time = Time
@@ -79,7 +79,7 @@ class Earthquake(db.Model):
         self.Vol = Vol
         self.Location_Name = Location_Name
         self.Latitude = Latitude
-        self.Longtitude = Longtitude
+        self.Longitude = Longitude
         self.Focal_Depth_km = Focal_Depth_km
         self.Mag = Mag
         self.MMI_Int = MMI_Int
@@ -123,7 +123,7 @@ class Earthquake(db.Model):
             self.Vol , 
             self.Location_Name , 
             self.Latitude , 
-            self.Longtitude , 
+            self.Longitude , 
             self.Focal_Depth_km , 
             self.Mag , 
             self.MMI_Int , 
@@ -169,7 +169,7 @@ class Earthquake(db.Model):
             'Vol' : self.Vol,
             'Location_Name' : self.Location_Name,
             'Latitude' : self.Latitude,
-            'Longtitude' : self.Longtitude,
+            'Longitude' : self.Longitude,
             'Focal_Depth_km' : self.Focal_Depth_km,
             'Mag' : self.Mag,
             'MMI_Int' : self.MMI_Int,
@@ -218,7 +218,7 @@ def get_map_data():
     
     start_year = request.args.get('start_year', default = 1800, type = int)
     end_year = request.args.get('end_year', default = 2021, type = int)
-    print(start_year, end_year, type(start_year))
+    
     min_magnitude = request.args.get('min_magnitude', default = -1000, type = float)
     max_magnitude = request.args.get('max_magnitude', default = 10, type = float)
     tsunami_temp = request.args.get('tsunami', default = False, type = bool)
@@ -229,9 +229,10 @@ def get_map_data():
     volcano = -1000
     if volcano_temp:
         volcano = 0
-    location = request.args.get('location', default = '', type = str)
-
-
+    print(start_year, end_year, tsunami_temp)
+    location_temp = request.args.get('location', default = '', type = str)
+    location = "%"+location_temp.upper()+"%"
+    print(location, '------------')
     result = session.query(Earthquake)\
             .where(Earthquake.Year >= start_year)\
             .where(Earthquake.Year <= end_year)\
@@ -239,12 +240,15 @@ def get_map_data():
             .where(Earthquake.Mag <= max_magnitude)\
             .where(Earthquake.Tsu >= tsunami)\
             .where(Earthquake.Vol >= volcano)\
+            .filter(Earthquake.Location_Name.like(location))\
             .all()
     output = []
     for row in result:
         temp = row.__dict__
         temp.pop('_sa_instance_state')
-        print(type(temp))
+        for key in temp:
+            if temp[key]==-1000:
+                temp[key]=0
         output.append(temp)
     with open('static/json/earthquake_data_small.json', 'w') as f:
         json.dump(output, f)

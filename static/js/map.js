@@ -91,7 +91,7 @@ var mapData = [
             })
 
             imageTemplate.adapter.add("longitude", function (Longitude, target) {
-                return target.dataItem.dataContext.Longtitude;
+                return target.dataItem.dataContext.Longitude;
             })
         });
 
