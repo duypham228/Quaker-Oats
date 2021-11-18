@@ -216,9 +216,11 @@ def general_info():
 def get_map_data():
     session = Session(engine)
     
-    start_year = request.args.get('start_year', default = 1800, type = int)
-    end_year = request.args.get('end_year', default = 2021, type = int)
-    
+    year1 = request.args.get('year1', default = 1800, type = int)
+    year2 = request.args.get('year2', default = 2021, type = int)
+    start_year = min(year1,year2)
+    end_year = max(year1, year2)
+
     min_magnitude = request.args.get('min_magnitude', default = -1000, type = float)
     max_magnitude = request.args.get('max_magnitude', default = 10, type = float)
     tsunami_temp = request.args.get('tsunami', default = False, type = bool)
