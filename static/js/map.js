@@ -83,7 +83,13 @@ var mapData = [
             //circle.propertyFields.fill = am4core.color("blue");
             circle.tooltipText = "{Location_Name}: [bold]{value}[/]";
             //circle.tooltipHTML = "{Summary_Text}";
-            circle.events.on("hit", function(ev) {alert(ev.target.dataItem.dataContext.Summary_Text)}, this);
+            circle.events.on("hit", function(ev) {
+                if(ev.target.dataItem.dataContext.Summary_Text.length > 3){
+                    alert(ev.target.dataItem.dataContext.Summary_Text);
+                }
+                else
+                    alert("No reliable information is found using our searching model")
+            }, this);
 
 
             imageSeries.heatRules.push({

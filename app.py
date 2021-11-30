@@ -225,8 +225,10 @@ def get_map_data():
     start_year = min(year1,year2)
     end_year = max(year1, year2)
 
-    min_magnitude = request.args.get('min_magnitude', default = -1000, type = float)
-    max_magnitude = request.args.get('max_magnitude', default = 10, type = float)
+    mag1 = request.args.get('mag1', default = 0, type = float)
+    mag2 = request.args.get('mag2', default = 10, type = float)
+    min_magnitude = min(mag1,mag2)
+    max_magnitude = max(mag1,mag2)
     tsunami_temp = request.args.get('tsunami', default = False, type = bool)
     tsunami = -1000
     if tsunami_temp:
