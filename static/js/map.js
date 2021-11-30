@@ -83,8 +83,7 @@ var mapData = [
             //circle.propertyFields.fill = am4core.color("blue");
             circle.tooltipText = "{Location_Name}: [bold]{value}[/]";
             //circle.tooltipHTML = "{Summary_Text}";
-
-            
+            circle.events.on("hit", function(ev) {alert(ev.target.dataItem.dataContext.Summary_Text)}, this);
 
 
             imageSeries.heatRules.push({
@@ -92,7 +91,7 @@ var mapData = [
                 "property": "radius",
                 "min": 4,
                 "max": 30,
-                "dataField": "value",
+                "dataField": "value"
             })
 
             imageTemplate.adapter.add("latitude", function (Latitude, target) {
@@ -106,8 +105,6 @@ var mapData = [
             imageTemplate.adapter.add("summary_text", function(Summary_Text, target) {
                 return target.dataItem.dataContext.Summary_Text;
             })
-
-            circle.events.on("hit", element => {alert(circle.tooltipText);});
         });
 
 
