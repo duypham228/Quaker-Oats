@@ -64,8 +64,9 @@ class Earthquake(db.Model):
     Total_Houses_Destroyed_Description = db.Column(db.Integer())
     Total_Houses_Damaged = db.Column(db.Integer())
     Total_Houses_Damaged_Description = db.Column(db.Integer())
+    Summary_Text = db.Column(db.String())
 
-    def __init__(self, ID ,Epoch ,Time ,Year ,Mo ,Dy, Hr ,Mn ,Sec,Tsu,Vol,Location_Name,Latitude,Longitude,Focal_Depth_km,Mag,MMI_Int,Deaths,Deaths_Description ,Missing ,Missing_Description ,Injuries ,Injuries_Description ,Damage_MilDollar ,Damage_Description, Houses_Destroyed, Houses_Destroyed_Description ,Houses_Damaged ,Houses_Damaged_Description ,Total_Deaths ,Total_Death_Description ,Total_Missing ,Total_Missing_Description ,Total_Injuries ,Total_Injuries_Description ,Total_Damage_MilDollar ,Total_Damage_Description ,Total_Houses_Destroyed ,Total_Houses_Destroyed_Description ,Total_Houses_Damaged,Total_Houses_Damaged_Description):
+    def __init__(self, ID ,Epoch ,Time ,Year ,Mo ,Dy, Hr ,Mn ,Sec,Tsu,Vol,Location_Name,Latitude,Longitude,Focal_Depth_km,Mag,MMI_Int,Deaths,Deaths_Description ,Missing ,Missing_Description ,Injuries ,Injuries_Description ,Damage_MilDollar ,Damage_Description, Houses_Destroyed, Houses_Destroyed_Description ,Houses_Damaged ,Houses_Damaged_Description ,Total_Deaths ,Total_Death_Description ,Total_Missing ,Total_Missing_Description ,Total_Injuries ,Total_Injuries_Description ,Total_Damage_MilDollar ,Total_Damage_Description ,Total_Houses_Destroyed ,Total_Houses_Destroyed_Description ,Total_Houses_Damaged,Total_Houses_Damaged_Description, Summary_Text):
         self.ID = ID
         self.Epoch = Epoch
         self.Time = Time
@@ -107,6 +108,7 @@ class Earthquake(db.Model):
         self.Total_Houses_Destroyed_Description = Total_Houses_Destroyed_Description
         self.Total_Houses_Damaged = Total_Houses_Damaged
         self.Total_Houses_Damaged_Description = Total_Houses_Damaged_Description
+        self.Summary_Text = Summary_Text
 
     def __repr__(self):
         return [
@@ -150,7 +152,8 @@ class Earthquake(db.Model):
             self.Total_Houses_Destroyed ,
             self.Total_Houses_Destroyed_Description ,
             self.Total_Houses_Damaged,
-            self.Total_Houses_Damaged_Description
+            self.Total_Houses_Damaged_Description,
+            self.Summary_Text
         ]
 
     
@@ -196,7 +199,8 @@ class Earthquake(db.Model):
             'Total_Houses_Destroyed' : self.Total_Houses_Destroyed,
             'Total_Houses_Destroyed_Description' : self.Total_Houses_Destroyed_Description,
             'Total_Houses_Damaged' : self.Total_Houses_Damaged,
-            'Total_Houses_Damaged_Description' : self.Total_Houses_Damaged_Description
+            'Total_Houses_Damaged_Description' : self.Total_Houses_Damaged_Description,
+            'Summary_Text' : self.Summary_Text
         }
 
 
