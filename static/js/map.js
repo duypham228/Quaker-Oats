@@ -47,14 +47,16 @@ var mapData = [
             polygonSeries.strokeWidth = 0.5;
             polygonSeries.calculateVisualCenter = true;
 
+            
             var imageSeries = chart.series.push(new am4maps.MapImageSeries());
             imageSeries.data = mapData;
+
             if (menu === "Magnitude") {
                 imageSeries.dataFields.value = "Mag";
             } else if (menu === "Death") {
                 imageSeries.dataFields.value = "Deaths";
             } else if (menu === "Damage") {
-                imageSeries.dataFields.value = "Damage ($Mil)";
+                imageSeries.dataFields.value = "Damage_MilDollar";
             }
 
 
@@ -63,7 +65,11 @@ var mapData = [
 
             var circle = imageTemplate.createChild(am4core.Circle);
             circle.fillOpacity = 0.7;
-
+            // circle.tooltipText = function(){alert('test');};
+            // circle.on("hit",function(){alert('test');}, this)
+            testing = "{Location_Name}"
+            
+            
             if (menu === "Magnitude") {
                 circle.fillOpacity = 0.8;
                 circle.fill = 'yellow';
@@ -76,6 +82,9 @@ var mapData = [
 
             //circle.propertyFields.fill = am4core.color("blue");
             circle.tooltipText = "{Location_Name}: [bold]{value}[/]";
+            //circle.tooltipHTML = "{Summary_Text}";
+
+            
 
 
             imageSeries.heatRules.push({
@@ -83,7 +92,7 @@ var mapData = [
                 "property": "radius",
                 "min": 4,
                 "max": 30,
-                "dataField": "value"
+                "dataField": "value",
             })
 
             imageTemplate.adapter.add("latitude", function (Latitude, target) {
@@ -93,6 +102,12 @@ var mapData = [
             imageTemplate.adapter.add("longitude", function (Longitude, target) {
                 return target.dataItem.dataContext.Longitude;
             })
+
+            imageTemplate.adapter.add("summary_text", function(Summary_Text, target) {
+                return target.dataItem.dataContext.Summary_Text;
+            })
+
+            circle.events.on("hit", element => {alert(circle.tooltipText);});
         });
 
 
