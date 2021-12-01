@@ -18,13 +18,13 @@ body {
         <div class="row">
             <div class="info col-md-3">
             
-                    <div class="brief-info box">Brief Information</div>
+                    <div class="brief-info box"><b>About</b><br>This is an integrated knowledge base of worldwide earthquakes ranging from the 1800s to the present date. You can learn more about earthquakes and related disasters through our “Learn About Earthquakes” tab, view data about earthquakes around the world by selecting the timeline, and filtering according to “Magnitude”, “Death”, and “Damages”. Click on an earthquake to know more about it!</div>
                     <div class="learn-link box">
-                        <p>Learn about</p>
+                        <p><b>Learn about</b></p>
                         <a href="{{ url_for('general_info') }}"><button type="button" class="btn btn-primary btn">Learn about Earthquakes</button></a>
                     </div>
                     <div class="querry box">
-                        <p>Querry Information Search</p>
+
                         <form action="/get_map_data">
                             <div class="form-group">
                                 <label for="location">Desired Location:</label>
@@ -68,7 +68,7 @@ body {
             </div>
 
         </div>
-        <div class="row box timeline">Time Line</div>
+
     </div>
 
 

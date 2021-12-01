@@ -85,10 +85,10 @@ var mapData = [
             //circle.tooltipHTML = "{Summary_Text}";
             circle.events.on("hit", function(ev) {
                 if(ev.target.dataItem.dataContext.Summary_Text.length > 3){
-                    alert(ev.target.dataItem.dataContext.Summary_Text);
+                    alert("Event time: " + ev.target.dataItem.dataContext.Time + "\n" + ev.target.dataItem.dataContext.Summary_Text)
                 }
                 else
-                    alert("No reliable information is found using our searching model")
+                    alert("Event time: " + ev.target.dataItem.dataContext.Time + "\n" + "No reliable information is found using our searching model")
             }, this);
 
 

@@ -9,11 +9,11 @@
 
 
 .brief-info {
-    height: 15vh;
+    height: 32vh;
 }
 
 .learn-link {
-    height: 10vh;
+    height: 15vh;
 }
 
 
@@ -22,11 +22,7 @@
 }
 
 .world-map {
-    height: 80vh;
-}
-
-.timeline {
-    height: 17vh;
+    height: 100vh;
 }
 
 #chartdiv {
