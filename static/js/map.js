@@ -12,8 +12,14 @@ function draw_circles(menu) {
 
         var title = chart.titles.create();
         var title_text = "[bold font-size: 20 fill: white;]Worldwide Earthquake Visualization";
-        title.text = title_text.concat(' - ', menu);
 
+        if (menu === "Magnitude") {
+            title.text = title_text.concat(' - ', menu, ' (Richter)');
+        } else if (menu === "Death") {
+            title.text = title_text.concat(' - ', menu);
+        } else if (menu === "Damage") {
+            title.text = title_text.concat(' - ', menu, ' (Million Dollars)');
+        }
         title.textAlign = "middle";
 
 //var mapData = [{'id': 0, 'name': 'PAKISTAN: BALOCHISTAN PROVINCE', 'value': 5.9, 'latitude':30.22, 'longitude': 68.014}];
