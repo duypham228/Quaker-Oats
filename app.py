@@ -15,12 +15,12 @@ app = Flask(__name__, static_url_path='/static')
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://postgres:369491Nghia@localhost:5432/quaker_oats'
+app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://name:pass@localhost:5432/quaker_oats'
 db = SQLAlchemy(app)
 
-engine = create_engine('postgresql://postgres:369491Nghia@localhost:5432/quaker_oats')
+engine = create_engine('postgresql://name:pass@localhost:5432/quaker_oats')
 
-# engine = db.create_engine('postgresql+psycopg2://postgres:369491Nghia@localhost:5432/postgresql+psycopg2://postgres:369491Nghia@localhost:5432/quaker_oats')
+# engine = db.create_engine('postgresql+psycopg2://name:pass@localhost:5432/postgresql+psycopg2://name:pass@localhost:5432/quaker_oats')
 # connection = engine.connect()
 class Earthquake(db.Model):
     __tablename__ = 'earthquakes'
